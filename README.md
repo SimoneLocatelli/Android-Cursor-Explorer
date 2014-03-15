@@ -8,22 +8,39 @@ For example it is useful when you need to read data through ContentResolver and 
 
 Usage
 ----- 
-	ScrollView scrollView = (ScrollView) findViewById(R.id.activity_main_scrollView_main);
+
+Your Activity Layout
+ 
+ ```xml
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent" android:id="@+id/activity_main_scrollView_main"
+    android:layout_height="match_parent"
+    android:scrollbarAlwaysDrawHorizontalTrack="true"
+    android:scrollbarAlwaysDrawVerticalTrack="true"
+    tools:context=".MainActivity" >
+
+</ScrollView>
+```
+
+And here the code to create the TableLayoutView
+
+```java
+ScrollView scrollView = (ScrollView) findViewById(R.id.activity_main_scrollView_main);
 
 CursorExplorer cursorExplorer = new CursorExplorer(this);
+   
+Cursor cursor = getCursor();
 
-personDataSource.open();
+scrollView.addView(cursorExplorer.explore(personDataSource.getCursor()));
+```
 
-Cursor cursor = personDataSource.getCursor();
-
-if (cursor.getCount() == 0) {
-intialize();
-}
-
-scrollView
-.addView(cursorExplorer.explore(personDataSource.getCursor()));
+Project structure
+----- 
 
 There are two projects in this repository:
  
-1. CursorExplorer
-2. CursorExplorerSampleApp
+* CursorExplorer
+* CursorExplorerSampleApp
+
+###### H6
